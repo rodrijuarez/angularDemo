@@ -2,7 +2,6 @@
   <artifact type="exploded-war" name="ngdemo:war exploded">
     <output-path>$PROJECT_DIR$/target/ngdemo</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="ngdemo/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="ngdemo" />
@@ -24,6 +23,10 @@
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-xc:1.9.2" />
         </element>
       </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/ngdemo/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="ngdemo/web/Web" />
     </root>
   </artifact>
 </component>

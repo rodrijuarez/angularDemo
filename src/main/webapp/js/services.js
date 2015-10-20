@@ -1,11 +1,14 @@
 var services = angular.module('ngdemo.services', ['ngResource']);
 
-services.factory('UserFactory', function ($resource) {
-    return $resource('/ngdemo/rest/users', {}, {
+services.factory('RecetaFactory', function ($resource) {
+    return $resource('/rest/recetas', {}, {
         query: {
             method: 'GET',
             params: {},
             isArray: false
+        },
+        create: {
+            method: 'POST'
         }
     })
 });
