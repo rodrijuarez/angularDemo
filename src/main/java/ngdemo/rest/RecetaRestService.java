@@ -5,10 +5,13 @@ import ngdemo.service.RecetaService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 
 @Path("/recetas")
 public class RecetaRestService {
+
+    private List<Receta> recetas;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -16,12 +19,22 @@ public class RecetaRestService {
         RecetaService recetaService = new RecetaService();
         return recetaService.getDefaultReceta();
     }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Receta create(Receta receta) {
         System.out.println(receta);
         RecetaService recetaService = new RecetaService();
+        recetaService.create(receta);
         return recetaService.getDefaultReceta();
+    }
+
+    public List<Receta> getRecetas() {
+        return recetas;
+    }
+
+    public void setRecetas(List<Receta> recetas) {
+        this.recetas = recetas;
     }
 }
