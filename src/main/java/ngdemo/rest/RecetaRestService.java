@@ -1,11 +1,20 @@
 package ngdemo.rest;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import ngdemo.domain.Receta;
 import ngdemo.service.RecetaService;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.List;
 
 
 @Path("/recetas")
@@ -13,21 +22,26 @@ public class RecetaRestService {
 
     private List<Receta> recetas;
 
+    private RecetaService service;
+
+    @PersistenceContext(unitName = "angularDemo-PU")
+    private EntityManager entityManager;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Receta getDefaultRecetaInJSON() {
-        RecetaService recetaService = new RecetaService();
-        return recetaService.getDefaultReceta();
+        return service.getDefaultReceta();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Receta create(Receta receta) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("angularDemo-PU");
+        EntityManager em = emf.createEntityManager();
         System.out.println(receta);
-        RecetaService recetaService = new RecetaService();
-        recetaService.create(receta);
-        return recetaService.getDefaultReceta();
+            service.create(receta);
+        return service.getDefaultReceta();
     }
 
     public List<Receta> getRecetas() {

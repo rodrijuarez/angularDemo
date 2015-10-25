@@ -1,14 +1,22 @@
 package ngdemo.domain;
 
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
+@Entity
 @XmlRootElement
 public class Receta {
 
+    @Id
     private Integer id;
+
     private String nombre;
+
     private String descripcion;
 
     public String getNombre() {

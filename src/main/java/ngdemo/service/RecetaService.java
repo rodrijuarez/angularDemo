@@ -3,7 +3,16 @@ package ngdemo.service;
 import ngdemo.dao.RecetaDao;
 import ngdemo.domain.Receta;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class RecetaService {
+
+    private RecetaDao dao;
+
+    public RecetaService(){
+        dao = new RecetaDao();
+    }
 
     public Receta getDefaultReceta() {
         Receta receta = new Receta();
@@ -13,7 +22,6 @@ public class RecetaService {
     }
 
     public void create(Receta receta){
-        RecetaDao recetaDao = new RecetaDao();
-        recetaDao.create(receta);
+        dao.create(receta);
     }
 }
