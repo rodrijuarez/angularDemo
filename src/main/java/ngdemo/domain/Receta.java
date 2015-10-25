@@ -1,10 +1,8 @@
 package ngdemo.domain;
 
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Proxy;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
 

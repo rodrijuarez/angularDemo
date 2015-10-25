@@ -1,7 +1,7 @@
 var services = angular.module('ngdemo.services', ['ngResource']);
 
 services.factory('RecetaFactory', function ($resource) {
-    return $resource('/rest/recetas', {}, {
+    return $resource('/ngdemo/rest/recetas', {}, {
         query: {
             method: 'GET',
             params: {},

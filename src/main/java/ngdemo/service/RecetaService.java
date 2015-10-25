@@ -3,9 +3,6 @@ package ngdemo.service;
 import ngdemo.dao.RecetaDao;
 import ngdemo.domain.Receta;
 
-import javax.ejb.Stateless;
-
-@Stateless
 public class RecetaService {
 
     private RecetaDao dao;
