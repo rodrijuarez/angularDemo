@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="ngdemo" />
+
+	<bean id="receta" class="ngdemo.domain.Receta">
+		<property name="nombre" value="Pollo"></property>
+	</bean>
+
+	<bean id="recetaRestService" class="ngdemo.rest.RecetaRestService">
+		<property name="receta" ref="receta"></property>
+	</bean>
+
+</beans> 

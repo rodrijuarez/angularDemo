@@ -3,8 +3,6 @@ package ngdemo.rest;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -16,39 +14,57 @@ import javax.ws.rs.core.MediaType;
 import ngdemo.domain.Receta;
 import ngdemo.service.RecetaService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Path("/recetas")
+@Component
 public class RecetaRestService {
 
-    private List<Receta> recetas;
+	private List<Receta> recetas;
 
-    private RecetaService service;
+	private RecetaService service;
 
-    @PersistenceContext(unitName = "angularDemo-PU")
-    private EntityManager entityManager;
+	@Autowired
+	private RecetaService autowireado;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Receta getDefaultRecetaInJSON() {
-        return service.getDefaultReceta();
-    }
+	private Receta receta;
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Receta create(Receta receta) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("angularDemo-PU");
-        EntityManager em = emf.createEntityManager();
-        System.out.println(receta);
-            service.create(receta);
-        return service.getDefaultReceta();
-    }
+	@PersistenceContext(unitName = "angularDemo-PU")
+	private EntityManager entityManager;
 
-    public List<Receta> getRecetas() {
-        return recetas;
-    }
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Receta getDefaultRecetaInJSON() {
+		return service.getDefaultReceta();
+	}
 
-    public void setRecetas(List<Receta> recetas) {
-        this.recetas = recetas;
-    }
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Receta create(final Receta receta) {
+		// final EntityManagerFactory emf =
+		// Persistence.createEntityManagerFactory("angularDemo-PU");
+		// final EntityManager em = emf.createEntityManager();
+		System.out.println(this.receta);
+		service.create(receta);
+		return service.getDefaultReceta();
+	}
+
+	public List<Receta> getRecetas() {
+		return recetas;
+	}
+
+	public void setRecetas(final List<Receta> recetas) {
+		this.recetas = recetas;
+	}
+
+	public Receta getReceta() {
+		return receta;
+	}
+
+	@Autowired
+	public void setReceta(final Receta receta) {
+		this.receta = receta;
+	}
 }
