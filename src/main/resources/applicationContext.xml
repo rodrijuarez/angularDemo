@@ -11,14 +11,13 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="ngdemo" />
+	<context:component-scan base-package="ngdemo.rest" />
 
-	<bean id="receta" scope="prototype" class="ngdemo.domain.Receta">
-		<property name="nombre" value="Pollo"></property>
+	<bean id="recetaService" class="ngdemo.service.RecetaService">
 	</bean>
 
-	<bean id="recetaRestService" scope="prototype" class="ngdemo.rest.RecetaRestService">
-		<property name="receta" ref="receta"></property>
+	<bean id="recetaRestService" class="ngdemo.rest.RecetaRestService">
+		<property name="recetaService" ref="recetaService"></property>
 	</bean>
 
 </beans> 

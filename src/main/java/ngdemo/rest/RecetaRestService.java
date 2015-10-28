@@ -15,14 +15,10 @@ import ngdemo.domain.Receta;
 import ngdemo.service.RecetaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.sun.jersey.spi.inject.Inject;
 
 @Path("/recetas")
 @Component
-@Scope("request") 
 public class RecetaRestService {
 
 	private List<Receta> recetas;
@@ -30,9 +26,8 @@ public class RecetaRestService {
 	private RecetaService service;
 
 	@Autowired
-	private RecetaService autowireado;
+	private RecetaService recetaService;
 
-	@Inject
 	private Receta receta;
 
 	@PersistenceContext(unitName = "angularDemo-PU")
@@ -63,13 +58,8 @@ public class RecetaRestService {
 	public void setRecetas(final List<Receta> recetas) {
 		this.recetas = recetas;
 	}
-
-	public Receta getReceta() {
-		return receta;
-	}
-
-	@Autowired
-	public void setReceta(final Receta receta) {
-		this.receta = receta;
+	
+	public void setRecetaService(final RecetaService recetaService) {
+		this.recetaService = recetaService;
 	}
 }

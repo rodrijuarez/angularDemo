@@ -1,50 +1,32 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    version="3.0">
-    <display-name>Restful Web Application</display-name>
+	version="3.0">
+	<display-name>Restful Web Application</display-name>
 
-    <servlet>
-        <servlet-name>jersey-serlvet</servlet-name>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
 
-        <servlet-class>
-            com.sun.jersey.spi.container.servlet.ServletContainer
-        </servlet-class>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>ngdemo.rest</param-value>
-        </init-param>
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>
+			com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>ngdemo.rest</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
-        <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>jersey-serlvet</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-    <listener>  
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
-	</listener>  
-	<listener>  
-        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>  
-	</listener>  
-	<context-param>  
- 		<param-name>contextConfigLocation</param-name>  
- 		<param-value>classpath:applicationContext.xml</param-value>  
-	</context-param>  
-	<servlet>  
-	    <servlet-name>jerseyspring</servlet-name>  
-	    <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>  
-	    <load-on-startup>1</load-on-startup>  
-	</servlet>  
-	<servlet-mapping>  
-    	<servlet-name>jerseyspring</servlet-name>  
-    	<url-pattern>/resource/*</url-pattern>  
-	</servlet-mapping>  
 </web-app>
