@@ -4,15 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
 public class Receta {
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "receta")
-	@TableGenerator(name = "receta", table = "sequences", pkColumnName = "key", pkColumnValue = "receta", valueColumnName = "seed")
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
 	private String nombre;

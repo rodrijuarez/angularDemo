@@ -1,8 +1,10 @@
 package ngdemo.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.transaction.TransactionManager;
+import javax.transaction.Transactional;
 
 import org.jboss.jandex.Main;
 import org.springframework.stereotype.Repository;
@@ -11,20 +13,25 @@ import org.springframework.stereotype.Repository;
  * Created by rodri on 10/25/2015.
  */
 @Repository
-public class GenericDaoMongoDB implements GenericDao {
-	@PersistenceContext(unitName = "angularDemo-PU")
-	EntityManager entityManager;
+public class GenericDaoMongoDB<T> implements GenericDao<T> {
+	private EntityManager entityManager;
+
+	private final EntityManagerFactory entityManagerFactory;
+
+	public GenericDaoMongoDB() {
+		entityManagerFactory = Persistence
+				.createEntityManagerFactory("angularDemo-PU");
+	}
 
 	private static final String JBOSS_TM_CLASS_NAME = "com.arjuna.ats.jta.TransactionManager";
 
 	@Override
-	public void persist(final Object object) throws Exception {
-		final TransactionManager transactionManager = getTransactionManager();
-		transactionManager.begin();
+	public void persist(final T object) throws Exception {
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
 		entityManager.persist(object);
-		entityManager.flush();
+		entityManager.getTransaction().commit();
 		entityManager.close();
-		transactionManager.commit();
 	}
 
 	public TransactionManager getTransactionManager() throws Exception {
