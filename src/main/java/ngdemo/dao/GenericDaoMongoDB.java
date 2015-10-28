@@ -1,5 +1,7 @@
 package ngdemo.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -28,5 +30,10 @@ public class GenericDaoMongoDB<T> implements GenericDao<T> {
 		entityManager.persist(object);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> getAll(final String className){
+		return entityManager.createQuery("SELECT * FROM Receta").getResultList();
 	}
 }

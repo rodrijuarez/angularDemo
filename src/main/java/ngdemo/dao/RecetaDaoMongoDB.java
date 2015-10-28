@@ -3,9 +3,9 @@ package ngdemo.dao;
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 
-import org.springframework.stereotype.Repository;
-
 import ngdemo.domain.Receta;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by rodri on 10/24/2015.

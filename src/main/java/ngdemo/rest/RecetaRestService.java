@@ -28,8 +28,8 @@ public class RecetaRestService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Receta getDefaultRecetaInJSON() {
-		return recetaService.getDefaultReceta();
+	public List<Receta> getDefaultRecetaInJSON() {
+		return recetaService.getAll();
 	}
 
 	@POST

@@ -1,5 +1,7 @@
 package ngdemo.service;
 
+import java.util.List;
+
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 
@@ -23,8 +25,13 @@ public class RecetaService {
 		return receta;
 	}
 
-	public Receta create(final Receta receta) throws NotSupportedException, SystemException, Exception {
+	public Receta create(final Receta receta) throws NotSupportedException,
+			SystemException, Exception {
 		return ((RecetaDaoMongoDB) recetaDao).create(receta);
+	}
+
+	public List<Receta> getAll() {
+		return ((RecetaDaoMongoDB) recetaDao).getAll(Receta.class.toString());
 	}
 
 	public void setDao(final RecetaDaoMongoDB recetaDao) {
