@@ -2,8 +2,8 @@ package ngdemo.rest;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,32 +23,20 @@ public class RecetaRestService {
 
 	private List<Receta> recetas;
 
-	private RecetaService service;
-
 	@Autowired
 	private RecetaService recetaService;
-
-	private Receta receta;
-
-	@PersistenceContext(unitName = "angularDemo-PU")
-	private EntityManager entityManager;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Receta getDefaultRecetaInJSON() {
-		return service.getDefaultReceta();
+		return recetaService.getDefaultReceta();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Receta create(final Receta receta) {
-		// final EntityManagerFactory emf =
-		// Persistence.createEntityManagerFactory("angularDemo-PU");
-		// final EntityManager em = emf.createEntityManager();
-		System.out.println(this.receta);
-		service.create(receta);
-		return service.getDefaultReceta();
+	public Receta create(final Receta receta) throws NotSupportedException, SystemException, Exception {
+		return recetaService.create(receta);
 	}
 
 	public List<Receta> getRecetas() {

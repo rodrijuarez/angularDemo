@@ -11,7 +11,7 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="ngdemo.rest" />
+	<context:component-scan base-package="ngdemo" />
 
 	<bean id="recetaService" class="ngdemo.service.RecetaService">
 	</bean>

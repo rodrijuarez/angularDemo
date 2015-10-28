@@ -1,46 +1,48 @@
 package ngdemo.domain;
 
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
-
 
 @Entity
 @XmlRootElement
 public class Receta {
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "receta")
+	@TableGenerator(name = "receta", table = "sequences", pkColumnName = "key", pkColumnValue = "receta", valueColumnName = "seed")
+	@Id
+	private Integer id;
 
-    @Id
-    private Integer id;
+	private String nombre;
 
-    private String nombre;
+	private String descripcion;
 
-    private String descripcion;
+	public String getNombre() {
+		return nombre;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setNombre(final String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getDescripcion() {
 
-    public String getDescripcion() {
+		return descripcion;
+	}
 
-        return descripcion;
-    }
+	public void setDescripcion(final String descripcion) {
 
-    public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 
-        this.descripcion = descripcion;
+	}
 
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(final Integer id) {
+		this.id = id;
+	}
 }
