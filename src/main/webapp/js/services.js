@@ -4,8 +4,7 @@ services.factory('RecetaFactory', function($resource) {
     return $resource('/ngdemo/rest/recetas', {}, {
         query : {
             method : 'GET',
-            params : {},
-            isArray : false
+            isArray : true
         },
         create : {
             method : 'POST'

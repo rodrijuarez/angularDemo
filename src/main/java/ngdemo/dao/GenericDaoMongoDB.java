@@ -6,8 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.springframework.stereotype.Repository;
-
 /**
  * Created by rodri on 10/25/2015.
  */
@@ -26,12 +24,13 @@ public class GenericDaoMongoDB<T> implements GenericDao<T> {
 	}
 
 	@Override
-	public void persist(final T object) throws Exception {
+	public T save(final T object) throws Exception {
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.persist(object);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+		return object;
 	}
 
 	@Override
@@ -41,6 +40,7 @@ public class GenericDaoMongoDB<T> implements GenericDao<T> {
 	}
 
 	public List<T> getAll() {
+		entityManager = entityManagerFactory.createEntityManager();
 		return entityManager.createQuery(
 				"FROM " + persistentClass.getSimpleName(),
 				persistentClass).getResultList();

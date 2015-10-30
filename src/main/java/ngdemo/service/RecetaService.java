@@ -27,11 +27,11 @@ public class RecetaService {
 
 	public Receta create(final Receta receta) throws NotSupportedException,
 			SystemException, Exception {
-		return ((RecetaDaoMongoDB) recetaDao).create(receta);
+		return recetaDao.save(receta);
 	}
 
 	public List<Receta> getAll() {
-		return ((RecetaDaoMongoDB) recetaDao).getAll(Receta.class.toString());
+		return ((RecetaDaoMongoDB) recetaDao).getAll();
 	}
 
 	public void setDao(final RecetaDaoMongoDB recetaDao) {

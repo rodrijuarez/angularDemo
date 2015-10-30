@@ -21,32 +21,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class RecetaRestService {
 
-	private List<Receta> recetas;
-
 	@Autowired
 	private RecetaService recetaService;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Receta> getDefaultRecetaInJSON() {
+	public List<Receta> getRecetas() {
 		return recetaService.getAll();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Receta create(final Receta receta) throws NotSupportedException, SystemException, Exception {
+	public Receta create(final Receta receta) throws NotSupportedException,
+			SystemException, Exception {
 		return recetaService.create(receta);
 	}
 
-	public List<Receta> getRecetas() {
-		return recetas;
-	}
-
-	public void setRecetas(final List<Receta> recetas) {
-		this.recetas = recetas;
-	}
-	
 	public void setRecetaService(final RecetaService recetaService) {
 		this.recetaService = recetaService;
 	}
