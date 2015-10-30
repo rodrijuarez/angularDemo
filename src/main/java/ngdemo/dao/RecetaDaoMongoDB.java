@@ -14,11 +14,15 @@ import org.springframework.stereotype.Repository;
 public class RecetaDaoMongoDB extends GenericDaoMongoDB<Receta> implements
 		RecetaDao {
 
+	public RecetaDaoMongoDB() {
+		super(Receta.class);
+	}
+
 	public Receta create(final Receta receta) throws NotSupportedException,
 			SystemException, Exception {
 		// entityManager.find(Receta.class,receta.getNombre());
 		persist(receta);
-		get(Receta.class, receta.getId());
+		get(receta.getId());
 		return receta;
 	}
 }

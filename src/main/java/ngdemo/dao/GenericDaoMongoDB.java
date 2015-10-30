@@ -11,16 +11,18 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by rodri on 10/25/2015.
  */
-@Repository
 public class GenericDaoMongoDB<T> implements GenericDao<T> {
 
 	private EntityManager entityManager;
 
 	private final EntityManagerFactory entityManagerFactory;
-
-	public GenericDaoMongoDB() {
+	
+	private final Class<T> persistentClass;
+	
+	public GenericDaoMongoDB(final Class<T> persistentClass) {
 		this.entityManagerFactory = Persistence
 				.createEntityManagerFactory("angularDemo-PU");
+		this.persistentClass = persistentClass;
 	}
 
 	@Override
@@ -33,9 +35,9 @@ public class GenericDaoMongoDB<T> implements GenericDao<T> {
 	}
 
 	@Override
-	public T get(final Class<T> type,final Integer id) {
+	public T get(final Integer id) {
 		entityManager = entityManagerFactory.createEntityManager();
-		return entityManager.find(type, id);
+		return entityManager.find(persistentClass, id);
 	}
 
 	@SuppressWarnings("unchecked")
