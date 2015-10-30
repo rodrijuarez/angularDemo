@@ -18,6 +18,7 @@ public class RecetaDaoMongoDB extends GenericDaoMongoDB<Receta> implements
 			SystemException, Exception {
 		// entityManager.find(Receta.class,receta.getNombre());
 		persist(receta);
+		get(Receta.class, receta.getId());
 		return receta;
 	}
 }

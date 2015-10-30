@@ -19,7 +19,7 @@ public class GenericDaoMongoDB<T> implements GenericDao<T> {
 	private final EntityManagerFactory entityManagerFactory;
 
 	public GenericDaoMongoDB() {
-		entityManagerFactory = Persistence
+		this.entityManagerFactory = Persistence
 				.createEntityManagerFactory("angularDemo-PU");
 	}
 
@@ -31,9 +31,16 @@ public class GenericDaoMongoDB<T> implements GenericDao<T> {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
-	
+
+	@Override
+	public T get(final Class<T> type,final Integer id) {
+		entityManager = entityManagerFactory.createEntityManager();
+		return entityManager.find(type, id);
+	}
+
 	@SuppressWarnings("unchecked")
-	public List<T> getAll(final String className){
-		return entityManager.createQuery("SELECT * FROM Receta").getResultList();
+	public List<T> getAll(final String className) {
+		return entityManager.createQuery("SELECT * FROM Receta")
+				.getResultList();
 	}
 }
