@@ -7,8 +7,7 @@ app.controller('RecetaFormController', [ '$scope', 'RecetaFactory', function($sc
 } ]);
 
 app.controller('RecetaController', [ '$scope', 'RecetaFactory', function($scope, RecetaFactory) {
-    $scope.recetas = [];
-    alert(RecetaFactory.query());
+    $scope.recetas = RecetaFactory.query();
 } ]);
 
 app.controller('MainController', [ '$scope', function($scope) {
