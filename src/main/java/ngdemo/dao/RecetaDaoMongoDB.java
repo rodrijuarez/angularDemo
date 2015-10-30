@@ -1,5 +1,7 @@
 package ngdemo.dao;
 
+import java.util.List;
+
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 
@@ -20,9 +22,9 @@ public class RecetaDaoMongoDB extends GenericDaoMongoDB<Receta> implements
 
 	public Receta create(final Receta receta) throws NotSupportedException,
 			SystemException, Exception {
-		// entityManager.find(Receta.class,receta.getNombre());
 		persist(receta);
 		get(receta.getId());
+		final List<Receta> recetas = getAll();
 		return receta;
 	}
 }
