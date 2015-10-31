@@ -10,4 +10,6 @@ public interface GenericDao<T> {
     void delete(int id);
 
     List<T> getAll();
+
+    void update(T object);
 }

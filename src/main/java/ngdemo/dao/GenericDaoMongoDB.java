@@ -51,4 +51,11 @@ public class GenericDaoMongoDB<T> implements GenericDao<T> {
         entityManager.remove(entityManager.merge(object));
         entityManager.getTransaction().commit();
     }
+
+    @Override
+    public void update(T object) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(object);
+        entityManager.getTransaction().commit();
+    }
 }

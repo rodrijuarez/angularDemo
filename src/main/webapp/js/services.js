@@ -5,6 +5,13 @@ services.factory('RecetaFactory', function($resource) {
         delete : {
             method:'DELETE',
             params:{id: '@id'}
+        },
+        update : {
+            method:'PUT',
+            params:{id: '@id'}
+        },
+        show:{
+            method:'GET'
         }
     })
 });

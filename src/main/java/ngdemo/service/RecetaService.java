@@ -34,9 +34,18 @@ public class RecetaService {
         recetaDao.delete(id);
     }
 
+    public void update(Receta receta) {
+        recetaDao.update(receta);
+    }
+
 	public List<Receta> getAll() {
 		return ((RecetaDaoMongoDB) recetaDao).getAll();
 	}
+
+    public Receta get(int id) {
+        return ((RecetaDaoMongoDB) recetaDao).get(id);
+    }
+
 
 	public void setDao(final RecetaDaoMongoDB recetaDao) {
 		this.recetaDao = recetaDao;
