@@ -7,41 +7,41 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@XmlRootElement
+@XmlRootElement()
 public class Receta {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
 
-	private String nombre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	private String descripcion;
+    private String nombre;
 
-	public String getNombre() {
-		return nombre;
-	}
+    private String descripcion;
 
-	public void setNombre(final String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getDescripcion() {
+    public void setNombre(final String nombre) {
+        this.nombre = nombre;
+    }
 
-		return descripcion;
-	}
+    public String getDescripcion() {
 
-	public void setDescripcion(final String descripcion) {
+        return descripcion;
+    }
 
-		this.descripcion = descripcion;
+    public void setDescripcion(final String descripcion) {
 
-	}
+        this.descripcion = descripcion;
 
-	public Integer getId() {
-		return id;
-	}
+    }
 
-	public void setId(final Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(final Integer id) {
+        this.id = id;
+    }
 }

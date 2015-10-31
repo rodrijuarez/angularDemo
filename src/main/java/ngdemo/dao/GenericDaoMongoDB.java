@@ -11,38 +11,44 @@ import javax.persistence.Persistence;
  */
 public class GenericDaoMongoDB<T> implements GenericDao<T> {
 
-	private EntityManager entityManager;
+    private EntityManager entityManager;
 
-	private final EntityManagerFactory entityManagerFactory;
+    private final EntityManagerFactory entityManagerFactory;
 
-	private final Class<T> persistentClass;
+    private final Class<T> persistentClass;
 
-	public GenericDaoMongoDB(final Class<T> persistentClass) {
-		this.entityManagerFactory = Persistence
-				.createEntityManagerFactory("angularDemo-PU");
-		this.persistentClass = persistentClass;
-	}
+    public GenericDaoMongoDB(final Class<T> persistentClass) {
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("angularDemo-PU");
+        this.persistentClass = persistentClass;
+    }
 
-	@Override
-	public T save(final T object) throws Exception {
-		entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
-		entityManager.persist(object);
-		entityManager.getTransaction().commit();
-		entityManager.close();
-		return object;
-	}
+    @Override
+    public T save(final T object) throws Exception {
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(object);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return object;
+    }
 
-	@Override
-	public T get(final Integer id) {
-		entityManager = entityManagerFactory.createEntityManager();
-		return entityManager.find(persistentClass, id);
-	}
+    @Override
+    public T get(final Integer id) {
+        entityManager = entityManagerFactory.createEntityManager();
+        return entityManager.find(persistentClass, id);
+    }
 
-	public List<T> getAll() {
-		entityManager = entityManagerFactory.createEntityManager();
-		return entityManager.createQuery(
-				"FROM " + persistentClass.getSimpleName(),
-				persistentClass).getResultList();
-	}
+    @Override
+    public List<T> getAll() {
+        entityManager = entityManagerFactory.createEntityManager();
+        return entityManager.createQuery("FROM " + persistentClass.getSimpleName(), persistentClass).getResultList();
+    }
+
+    @Override
+    public void delete(int id) {
+        T object = entityManager.find(persistentClass, id);
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.merge(object));
+        entityManager.getTransaction().commit();
+    }
 }

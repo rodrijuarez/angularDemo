@@ -30,6 +30,10 @@ public class RecetaService {
 		return recetaDao.save(receta);
 	}
 
+    public void delete(int id) {
+        recetaDao.delete(id);
+    }
+
 	public List<Receta> getAll() {
 		return ((RecetaDaoMongoDB) recetaDao).getAll();
 	}

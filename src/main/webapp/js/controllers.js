@@ -1,14 +1,24 @@
 var app = angular.module('ngdemo.controllers', []);
 
-app.controller('RecetaFormController', [ '$scope', 'RecetaFactory', function($scope, RecetaFactory) {
+app.controller('RecetaFormController', [ '$scope', 'RecetasFactory', function($scope, RecetasFactory) {
     $scope.guardarReceta = function() {
-        RecetaFactory.create($scope.receta);
+        RecetasFactory.create($scope.receta);
     }
 } ]);
 
-app.controller('RecetaController', [ '$scope', 'RecetaFactory', function($scope, RecetaFactory) {
-    $scope.recetas = RecetaFactory.query();
-} ]);
-
-app.controller('MainController', [ '$scope', function($scope) {
+app.controller('RecetaController', [ '$scope', 'RecetaFactory','RecetasFactory', function($scope, RecetaFactory,RecetasFactory) {
+    $scope.init = function(){
+        $scope.cargarRecetas();
+    }
+    
+    $scope.cargarRecetas = function(){
+        $scope.recetas = RecetasFactory.query();   
+    }
+    
+    $scope.deleteReceta = function(recetaId){
+        RecetaFactory.delete({id:recetaId},$scope.cargarRecetas);
+    }
+    
+    $scope.init();
+    
 } ]);
