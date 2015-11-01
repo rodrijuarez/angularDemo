@@ -8,6 +8,7 @@ app.controller('RecetaCreationController', [ '$scope', 'RecetasFactory','$locati
 } ]);
 
 app.controller('RecetaDetailController', [ '$scope', 'RecetaFactory','$routeParams','$location', function($scope,RecetaFactory,$routeParams, $location) {
+    
     $scope.actualizarReceta = function() {
         RecetaFactory.update($scope.receta);
         $location.path('/recetas');
@@ -15,23 +16,24 @@ app.controller('RecetaDetailController', [ '$scope', 'RecetaFactory','$routePara
     $scope.receta = RecetaFactory.show({id: $routeParams.id})
 } ]);
 
-app.controller('RecetaController', [ '$scope', 'RecetaFactory','RecetasFactory','$location', function($scope, RecetaFactory,RecetasFactory,$location) {
-    $scope.init = function(){
-        $scope.cargarRecetas();
+app.controller('RecetaController', [ 'RecetaFactory','RecetasFactory','$location', function(RecetaFactory,RecetasFactory,$location) {
+    var vm = this;
+    vm.init = function(){
+        vm.cargarRecetas();
     }
     
-    $scope.editReceta = function (recetaId) {
+    vm.editReceta = function (recetaId) {
         $location.path('/receta/detalle/' + recetaId);
     };
     
-    $scope.cargarRecetas = function(){
-        $scope.recetas = RecetasFactory.query();   
+    vm.cargarRecetas = function(){
+        vm.recetas = RecetasFactory.query();   
     }
     
-    $scope.deleteReceta = function(recetaId){
-        RecetaFactory.delete({id:recetaId},$scope.cargarRecetas);
+    vm.deleteReceta = function(recetaId){
+        RecetaFactory.delete({id:recetaId},vm.cargarRecetas);
     }
     
-    $scope.init();
+    vm.init();
     
 } ]);

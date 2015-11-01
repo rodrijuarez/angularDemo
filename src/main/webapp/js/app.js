@@ -13,7 +13,8 @@ angular.module('ngdemo', [ 'ngRoute', 'ngdemo.filters', 'ngdemo.services', 'ngde
             });
             $routeProvider.when('/recetas', {
                 templateUrl : 'partials/receta/recetaList.html',
-                controller : 'RecetaController'
+                controller : 'RecetaController',
+                controllerAs:'vm'
             });
             $routeProvider.otherwise({
                 redirectTo : '/receta/nueva'
