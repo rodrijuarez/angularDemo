@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="ngdemo">
+<html lang="en" ng-app="ngdemo" ng-controller="MainController">
 <head>
 <div ng-include src="'header.html'"></div>
 </head>
@@ -34,6 +34,7 @@
                 <!-- notificatoin dropdown start-->
                 <ul class="nav pull-right top-menu">
                     <!-- user login dropdown start-->
+                    <li><a ng-click="abrirAcercaDe()"><i class="icon_question_alt2"></i></a></li>
                     <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="profile-ava"> <img alt=""
                                 src="">
                         </span> <span class="username">Rodrigo Juarez</span> <b class="caret"></b>
@@ -76,6 +77,7 @@
 -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
     <script src="lib/angular/angular-resource.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
@@ -123,6 +125,7 @@
     <script src="js/external/sparklines.js"></script>
     <script src="js/external/charts.js"></script>
     <script src="js/external/jquery.slimscroll.min.js"></script>
+    <script src="js/external/v-modal.js"></script>
     <script>
                     //knob
                     $(function() {

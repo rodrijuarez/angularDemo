@@ -1,6 +1,22 @@
-var app = angular.module('ngdemo.controllers', []);
+var app = angular.module('ngdemo.controllers', ['ngAnimate','vModal']);
 
-app.controller('RecetaCreationController', [ '$scope', 'RecetasFactory','$location', function($scope, RecetasFactory,$location) {
+app.factory('myModal', function (vModal) {
+    return vModal({
+        controller: 'MyModalController',
+        controllerAs: 'myModalCtrl',
+        templateUrl: 'partials/modals/myModal.html'
+      });
+    })
+
+app.controller('MyModalController', function (myModal) {
+  this.close = myModal.deactivate;
+})
+
+app.controller('MainController', function (myModal,$scope) {
+    $scope.abrirAcercaDe = myModal.activate;
+  })
+    
+app.controller('RecetaCreationController', [ '$scope', 'RecetasFactory','$location','myModal', function($scope, RecetasFactory,$location,myModal) {
     $scope.guardarReceta = function() {
         RecetasFactory.create($scope.receta);
         $location.path('/recetas');
