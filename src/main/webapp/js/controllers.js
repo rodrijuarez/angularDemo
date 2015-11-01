@@ -1,4 +1,4 @@
-var app = angular.module('ngdemo.controllers', ['ngAnimate','vModal']);
+var app = angular.module('ngdemo.controllers', ['ngAnimate','vModal','ngSanitize', 'ngCsv']);
 
 app.factory('myModal', function (vModal) {
     return vModal({
