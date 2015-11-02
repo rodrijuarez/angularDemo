@@ -54,6 +54,6 @@ app.controller('RecetaController', [ 'RecetaFactory','RecetasFactory','$location
 } ]);
 
 app.controller('LocalController', function ($scope) {
-    $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+    $scope.map = {center: {latitude: -34.6122402, longitude: -58.394864 }, zoom: 14 };
     $scope.options = {scrollwheel: true};
 })
