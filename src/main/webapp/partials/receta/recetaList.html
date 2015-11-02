@@ -16,7 +16,7 @@
     <div class="col-lg-10">
         <div class="pull-right">
             <a class="btn btn-primary" href="#/receta/nueva" title="Nueva receta"><span class="icon_plus"></span></a> <a class="btn btn-primary"
-                ng-csv="vm.recetas" filename="recetas.csv" title="Exportar"><span class="icon_document_alt"></span></a>
+                ng-csv="vm.recetas" csv-column-order="['nombre', 'descripcion']" csv-header="['Nombre', 'Descripcion']" filename="recetas.csv" title="Exportar"><span class="icon_document_alt"></span></a>
         </div>
     </div>
 </div>
