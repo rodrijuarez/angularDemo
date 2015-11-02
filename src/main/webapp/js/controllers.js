@@ -53,7 +53,9 @@ app.controller('RecetaController', [ 'RecetaFactory','RecetasFactory','$location
     vm.init();
 } ]);
 
-app.controller('LocalController', function ($scope) {
-    $scope.map = {center: {latitude: -34.6122402, longitude: -58.394864 }, zoom: 14 };
+app.controller('LocalController', function ($scope,uiGmapIsReady,$timeout) {
+    $scope.map = {center: {latitude: -34.6122402, longitude: -58.394864 }, zoom: 14, bounds: {} };
     $scope.options = {scrollwheel: true};
+    $scope.locales = [];
+    $scope.locales.push({id:1,latitude:-34.6122402,longitude:-58.394864,title:'Ugi'});
 })
