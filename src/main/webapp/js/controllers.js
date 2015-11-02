@@ -1,4 +1,4 @@
-var app = angular.module('ngdemo.controllers', ['ngAnimate','vModal','ngSanitize', 'ngCsv']);
+var app = angular.module('ngdemo.controllers', ['ngAnimate','vModal','ngSanitize', 'ngCsv','uiGmapgoogle-maps']);
 
 app.factory('myModal', function (vModal) {
     return vModal({
@@ -51,5 +51,9 @@ app.controller('RecetaController', [ 'RecetaFactory','RecetasFactory','$location
     }
     
     vm.init();
-    
 } ]);
+
+app.controller('LocalController', function ($scope) {
+    $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+    $scope.options = {scrollwheel: true};
+})

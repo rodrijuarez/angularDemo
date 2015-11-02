@@ -4938,3 +4938,23 @@ span.customSelect.changed {
 .customSelectInner {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
 }
+
+#map_canvas {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	position: relative;
+}
+
+.scroll {
+	height: 100%;
+}
+
+.angular-google-map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 700px;
+}
