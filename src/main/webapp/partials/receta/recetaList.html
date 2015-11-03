@@ -31,8 +31,8 @@
                             <th>Descripcion</th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="receta in vm.recetas | filter: textoBusqueda">
-                        <tr>
+                    <tbody>
+                        <tr ng-repeat="receta in vm.recetas | filter: textoBusqueda">
                             <td>{{ receta.nombre }}</td>
                             <td>{{ receta.descripcion }}</td>
                             <td>

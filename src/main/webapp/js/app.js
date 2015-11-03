@@ -26,6 +26,6 @@ angular.module('ngdemo', [ 'ngRoute', 'ngdemo.filters', 'ngdemo.services', 'ngde
                 controller : 'LocalController'
             });
             $routeProvider.otherwise({
-                redirectTo : '/receta/nueva'
+                redirectTo : '/recetas'
             });
         } ]);
