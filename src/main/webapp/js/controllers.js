@@ -17,10 +17,15 @@ app.controller('MainController', function (myModal,$scope) {
   })
     
 app.controller('RecetaCreationController', [ '$scope', 'RecetasFactory','$location','myModal', function($scope, RecetasFactory,$location,myModal) {
+    $scope.receta = {};
+    $scope.receta.productos = [];
     $scope.guardarReceta = function() {
         RecetasFactory.create($scope.receta);
         $location.path('/recetas');
-    }
+    };
+    $scope.addProducto = function(){
+        $scope.receta.productos.push({});
+    };
 } ]);
 
 app.controller('RecetaDetailController', [ '$scope', 'RecetaFactory','$routeParams','$location', function($scope,RecetaFactory,$routeParams, $location) {
@@ -28,15 +33,15 @@ app.controller('RecetaDetailController', [ '$scope', 'RecetaFactory','$routePara
     $scope.actualizarReceta = function() {
         RecetaFactory.update($scope.receta);
         $location.path('/recetas');
-    }
-    $scope.receta = RecetaFactory.show({id: $routeParams.id})
+    };
+    $scope.receta = RecetaFactory.show({id: $routeParams.id});
 } ]);
 
 app.controller('RecetaController', [ 'RecetaFactory','RecetasFactory','$location', function(RecetaFactory,RecetasFactory,$location) {
     var vm = this;
     vm.init = function(){
         vm.cargarRecetas();
-    }
+    };
     
     vm.editReceta = function (recetaId) {
         $location.path('/receta/detalle/' + recetaId);
@@ -44,11 +49,11 @@ app.controller('RecetaController', [ 'RecetaFactory','RecetasFactory','$location
     
     vm.cargarRecetas = function(){
         vm.recetas = RecetasFactory.query();   
-    }
+    };
     
     vm.deleteReceta = function(recetaId){
         RecetaFactory.delete({id:recetaId},vm.cargarRecetas);
-    }
+    };
     
     vm.init();
 } ]);
@@ -59,7 +64,7 @@ app.controller('ProductoCreationController', [ '$scope', 'ProductosFactory','$lo
     $scope.guardarProducto = function() {
         ProductosFactory.create($scope.producto);
         $location.path('/productos');
-    }
+    };
 } ]);
 
 app.controller('ProductoDetailController', [ '$scope', 'ProductoFactory','$routeParams','$location', function($scope,ProductoFactory,$routeParams, $location) {
@@ -67,7 +72,7 @@ app.controller('ProductoDetailController', [ '$scope', 'ProductoFactory','$route
     $scope.actualizarProducto = function() {
         ProductoFactory.update($scope.producto);
         $location.path('/productos');
-    }
+    };
     $scope.producto = ProductoFactory.show({id: $routeParams.id})
 } ]);
 
@@ -75,7 +80,7 @@ app.controller('ProductoController', [ 'ProductoFactory','ProductosFactory','$lo
     var vm = this;
     vm.init = function(){
         vm.cargarProductos();
-    }
+    };
     
     vm.editProducto = function (productoId) {
         $location.path('/producto/detalle/' + productoId);
@@ -83,11 +88,11 @@ app.controller('ProductoController', [ 'ProductoFactory','ProductosFactory','$lo
     
     vm.cargarProductos = function(){
         vm.productos = ProductosFactory.query();   
-    }
+    };
     
     vm.deleteProducto = function(productoId){
         ProductoFactory.delete({id:productoId},vm.cargarProductos);
-    }
+    };
     
     vm.init();
 } ]);

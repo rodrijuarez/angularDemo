@@ -22,7 +22,7 @@ public class Receta {
 	private String descripcion;
 
 	@OneToMany
-	private List<ProductoReceta> productoRecetas;
+	private List<ProductoReceta> productos;
 
 	public String getNombre() {
 		return nombre;
@@ -51,11 +51,11 @@ public class Receta {
 		this.id = id;
 	}
 
-	public List<ProductoReceta> getProductoRecetas() {
-		return productoRecetas;
+	public List<ProductoReceta> getProductos() {
+		return productos;
 	}
 
-	public void setProductoRecetas(final List<ProductoReceta> productoRecetas) {
-		this.productoRecetas = productoRecetas;
+	public void setProductos(final List<ProductoReceta> productos) {
+		this.productos = productos;
 	}
 }
