@@ -17,8 +17,23 @@ angular.module('ngdemo', [ 'ngRoute', 'ngdemo.filters', 'ngdemo.services', 'ngde
                 controller : 'RecetaDetailController'
             });
             $routeProvider.when('/recetas', {
-                templateUrl : 'partials/receta/recetaList.html',
+                templateUrl : 'partials/receta/receta-list.html',
                 controller : 'RecetaController',
+                controllerAs : 'vm'
+            });
+            $routeProvider.when('/producto/nuevo', {
+                templateUrl : 'partials/producto/producto-new.html',
+                controller : 'ProductoCreationController',
+                controllerAs : 'vm'
+            });
+            $routeProvider.when('/producto/detalle/:id', {
+                templateUrl : 'partials/producto/producto-detail.html',
+                controller : 'ProductoDetailController',
+                controllerAs : 'vm'
+            });
+            $routeProvider.when('/productos', {
+                templateUrl : 'partials/producto/producto-list.html',
+                controller : 'ProductoController',
                 controllerAs : 'vm'
             });
             $routeProvider.when('/local', {

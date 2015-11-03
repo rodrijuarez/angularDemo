@@ -12,12 +12,5 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="ngdemo" />
-	
-	<bean id="recetaService" class="ngdemo.service.RecetaService">
-	</bean>
-
-	<bean id="recetaRestService" class="ngdemo.rest.RecetaRestService">
-		<property name="recetaService" ref="recetaService"></property>
-	</bean>
 
 </beans> 

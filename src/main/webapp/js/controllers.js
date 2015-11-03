@@ -53,6 +53,45 @@ app.controller('RecetaController', [ 'RecetaFactory','RecetasFactory','$location
     vm.init();
 } ]);
 
+
+
+app.controller('ProductoCreationController', [ '$scope', 'ProductosFactory','$location','myModal', function($scope, ProductosFactory,$location,myModal) {
+    $scope.guardarProducto = function() {
+        ProductosFactory.create($scope.producto);
+        $location.path('/productos');
+    }
+} ]);
+
+app.controller('ProductoDetailController', [ '$scope', 'ProductoFactory','$routeParams','$location', function($scope,ProductoFactory,$routeParams, $location) {
+    
+    $scope.actualizarProducto = function() {
+        ProductoFactory.update($scope.producto);
+        $location.path('/productos');
+    }
+    $scope.producto = ProductoFactory.show({id: $routeParams.id})
+} ]);
+
+app.controller('ProductoController', [ 'ProductoFactory','ProductosFactory','$location', function(ProductoFactory,ProductosFactory,$location) {
+    var vm = this;
+    vm.init = function(){
+        vm.cargarProductos();
+    }
+    
+    vm.editProducto = function (productoId) {
+        $location.path('/producto/detalle/' + productoId);
+    };
+    
+    vm.cargarProductos = function(){
+        vm.productos = ProductosFactory.query();   
+    }
+    
+    vm.deleteProducto = function(productoId){
+        ProductoFactory.delete({id:productoId},vm.cargarProductos);
+    }
+    
+    vm.init();
+} ]);
+
 app.controller('LocalController', function ($scope,uiGmapIsReady,$timeout) {
     $scope.map = {center: {latitude: -34.6122402, longitude: -58.394864 }, zoom: 14, bounds: {} };
     $scope.options = {scrollwheel: true};

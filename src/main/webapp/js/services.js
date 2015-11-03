@@ -26,3 +26,30 @@ services.factory('RecetasFactory', function($resource) {
         }
     })
 });
+
+services.factory('ProductoFactory', function($resource) {
+    return $resource('/ngdemo/rest/productos/:id', {}, {
+        delete : {
+            method:'DELETE',
+            params:{id: '@id'}
+        },
+        update : {
+            method:'PUT',
+            params:{id: '@id'}
+        },
+        show:{
+            method:'GET'
+        }
+    })
+});
+services.factory('ProductosFactory', function($resource) {
+    return $resource('/ngdemo/rest/productos', {}, {
+        query : {
+            method: 'GET',
+            isArray: true
+        },
+        create : {
+            method : 'POST'
+        }
+    })
+});

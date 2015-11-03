@@ -1,47 +1,61 @@
 package ngdemo.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement()
 public class Receta {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-    private String nombre;
+	private String nombre;
 
-    private String descripcion;
+	private String descripcion;
 
-    public String getNombre() {
-        return nombre;
-    }
+	@OneToMany
+	private List<ProductoReceta> productoRecetas;
 
-    public void setNombre(final String nombre) {
-        this.nombre = nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public String getDescripcion() {
+	public void setNombre(final String nombre) {
+		this.nombre = nombre;
+	}
 
-        return descripcion;
-    }
+	public String getDescripcion() {
 
-    public void setDescripcion(final String descripcion) {
+		return descripcion;
+	}
 
-        this.descripcion = descripcion;
+	public void setDescripcion(final String descripcion) {
 
-    }
+		this.descripcion = descripcion;
 
-    public Integer getId() {
-        return id;
-    }
+	}
 
-    public void setId(final Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(final Integer id) {
+		this.id = id;
+	}
+
+	public List<ProductoReceta> getProductoRecetas() {
+		return productoRecetas;
+	}
+
+	public void setProductoRecetas(final List<ProductoReceta> productoRecetas) {
+		this.productoRecetas = productoRecetas;
+	}
 }

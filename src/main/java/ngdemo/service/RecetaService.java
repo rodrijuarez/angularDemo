@@ -18,23 +18,16 @@ public class RecetaService {
 	@Autowired
 	private RecetaDao recetaDao;
 
-	public Receta getDefaultReceta() {
-		final Receta receta = new Receta();
-		receta.setNombre("JonFromREST");
-		receta.setDescripcion("DoeFromREST");
-		return receta;
-	}
-
 	public Receta create(final Receta receta) throws NotSupportedException,
 			SystemException, Exception {
 		return recetaDao.save(receta);
 	}
 
-    public void delete(int id) {
+    public void delete(final int id) {
         recetaDao.delete(id);
     }
 
-    public void update(Receta receta) {
+    public void update(final Receta receta) {
         recetaDao.update(receta);
     }
 
@@ -42,7 +35,7 @@ public class RecetaService {
 		return ((RecetaDaoMongoDB) recetaDao).getAll();
 	}
 
-    public Receta get(int id) {
+    public Receta get(final int id) {
         return ((RecetaDaoMongoDB) recetaDao).get(id);
     }
 
